@@ -1,5 +1,9 @@
 # polish-holidays
 
+![NPM Version](https://img.shields.io/npm/v/polish-holidays)
+[![Build status](https://ci.appveyor.com/api/projects/status/y6k0wwfb86ewrxnh/branch/main?svg=true)](https://ci.appveyor.com/project/lwojcik/polish-holidays/branch/main)
+[![codecov](https://codecov.io/github/lwojcik/polish-holidays/graph/badge.svg?token=2iZhjnFvhQ)](https://codecov.io/github/lwojcik/polish-holidays)
+
 Polish public holidays, state and national days, other days set by law and trading Sundays, for any year, each with its legal basis. It computes the days from the statutes (nothing is fetched), has no dependencies and runs on Node 24 or newer.
 
 ## Install
@@ -62,7 +66,3 @@ npm run typecheck
 npm run lint
 npm run build
 ```
-
-## Licence
-
-[MIT](LICENSE)

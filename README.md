@@ -19,13 +19,20 @@ Every function takes a year and gives the days of that year as plain objects wit
 ```ts
 import {
   easterSunday,
+  holidayOn,
   holidaysOf,
+  isHoliday,
+  isTradingSunday,
   otherDaysOf,
   stateDaysOf,
   tradingDaysOf,
 } from 'polish-holidays';
 
 easterSunday(2026); // '2026-04-05'
+
+isHoliday('2026-04-06'); // true (Easter Monday)
+holidayOn('2026-05-03')?.name; // 'Święto Konstytucji 3 Maja'
+isTradingSunday('2026-03-29'); // true
 
 holidaysOf(2026)[0];
 // {
@@ -46,6 +53,7 @@ tradingDaysOf(2026).slice(0, 2);
 - **`stateDaysOf(year)`** gives the 19 state and national days of the current list, by date, each with the `act` that set it (`signed`, `about`, `address`, `eli`). `isDayOff` is true for the three that are also days off work, and `fallsOnDayOff` for the Armed Forces Day, which falls on the Assumption.
 - **`otherDaysOf(year)`** gives the 38 other days that a statute or a resolution of the Sejm set (Police Day, National Education Day, ...), with `kind` (`statute` or `resolution`), the `basis` as the act or the article is cited, the `eli` address and `days`, how many days the observance runs (3 for the December commemoration of 1970). None of them is a day off work.
 - **`tradingDaysOf(year)`** gives the Sundays when shops may open under the act of 10 January 2018 on limiting trade on Sundays, Art. 7 (the Sunday before Easter, the last Sunday of January, April, June and August unless it is a holiday, and the three Sundays before Christmas Eve), and the Saturday before Easter, when shops close at 14:00 (Art. 8). `rule` says which rule gave the day. **Every other Sunday is closed**, so a list of these days names the rare ones.
+- **`holidayOn(date)`** and **`isHoliday(date)`** look up a single `YYYY-MM-DD` date among the holidays of its year, and **`isTradingSunday(date)`** says whether it is one of the Sundays above.
 - **`easterSunday(year)`** is the Gregorian computus.
 - **`HOLIDAYS_ACT`** and **`TRADE_ACT`** give the title and the address of the two acts in ISAP, **`actTitle(act)`** writes an act reference as a title and **`eliUrl(eli)`** gives its address on `eli.gov.pl`.
 

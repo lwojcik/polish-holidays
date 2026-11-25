@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { addDays, lastSundayOf, weekdayOf } from '@holidays/dates';
-import { tradingDaysOf } from '@holidays/trading';
+import { isTradingSunday, tradingDaysOf } from '@holidays/trading';
 
 const sundays = (year: number) =>
   tradingDaysOf(year)
@@ -112,5 +112,17 @@ describe('dates', () => {
     expect(addDays({ date: '2026-12-31', days: 1 })).toBe('2027-01-01');
     expect(addDays({ date: '2028-03-01', days: -1 })).toBe('2028-02-29');
     expect(weekdayOf('2026-11-18')).toBe(3);
+  });
+});
+
+describe('isTradingSunday', () => {
+  it('is true for a trading Sunday', () => {
+    expect(isTradingSunday('2026-03-29')).toBe(true);
+  });
+
+  it('is false for a closed Sunday, the Easter Saturday and a weekday', () => {
+    expect(isTradingSunday('2026-03-15')).toBe(false);
+    expect(isTradingSunday('2026-04-04')).toBe(false);
+    expect(isTradingSunday('2026-03-10')).toBe(false);
   });
 });

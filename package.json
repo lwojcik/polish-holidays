@@ -1,6 +1,6 @@
 {
   "name": "polish-holidays",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Polish public holidays, state and national days and trading Sundays, computed from the statutes: for any year, with the legal basis of each day.",
   "keywords": [
     "polish",

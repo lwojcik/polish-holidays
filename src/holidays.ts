@@ -21,3 +21,13 @@ export const holidaysOf = (year: number): Holiday[] => {
     }),
   );
 };
+
+const YEAR_LENGTH = 4;
+
+export const holidayOn = (date: string): Holiday | undefined =>
+  holidaysOf(Number(date.slice(0, YEAR_LENGTH))).find(
+    (holiday) => holiday.date === date,
+  );
+
+export const isHoliday = (date: string): boolean =>
+  holidayOn(date) !== undefined;

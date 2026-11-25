@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { actTitle, eliUrl, HOLIDAYS_ACT, TRADE_ACT } from '@holidays/acts';
-import { holidaysOf } from '@holidays/holidays';
+import { holidayOn, holidaysOf, isHoliday } from '@holidays/holidays';
 
 const bySlug = (year: number, slug: string) =>
   holidaysOf(year).filter((holiday) => holiday.slug === slug);
@@ -93,5 +93,17 @@ describe('acts', () => {
     expect(eliUrl('DU/2025/165')).toBe(
       'https://eli.gov.pl/eli/DU/2025/165/ogl/pol',
     );
+  });
+});
+
+describe('holidayOn and isHoliday', () => {
+  it('finds a fixed and a movable holiday', () => {
+    expect(holidayOn('2026-05-03')?.slug).toBeDefined();
+    expect(isHoliday('2026-04-06')).toBe(true);
+  });
+
+  it('is false on an ordinary day', () => {
+    expect(holidayOn('2026-03-10')).toBeUndefined();
+    expect(isHoliday('2026-03-10')).toBe(false);
   });
 });

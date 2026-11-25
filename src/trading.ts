@@ -13,6 +13,7 @@ const LAST_SUNDAY_MONTHS = [
 ];
 const SUNDAY_ARTICLE = 'art. 7 ust. 1';
 const SATURDAY_ARTICLE = 'art. 8 ust. 1';
+const YEAR_LENGTH = 4;
 
 const sunday = ({
   date,
@@ -60,3 +61,8 @@ export const tradingDaysOf = (year: number): TradingDay[] => {
     },
   ];
 };
+
+export const isTradingSunday = (date: string): boolean =>
+  tradingDaysOf(Number(date.slice(0, YEAR_LENGTH))).some(
+    (day) => day.kind === 'sunday' && day.date === date,
+  );
